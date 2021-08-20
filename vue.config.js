@@ -4,4 +4,3 @@ module.exports = {
     publicPath: './',
     lintOnSave:false,
 }
-// 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

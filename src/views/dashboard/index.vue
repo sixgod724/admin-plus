@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-row type="flex" :gutter="14">
-            <el-col :span="8">
+            <el-col :lg="8">
                 <div class="card">
                     <div class="card-body">
                         <h5>Congratulations 🎉 John!</h5>
@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </el-col>
-            <el-col :span="16">
+            <el-col :lg="16">
                 <div class="card card-statistics">
                     <div class="card-header">
                         <h4 class="card-title">Statistics</h4>

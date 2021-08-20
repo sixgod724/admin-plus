@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 100%;">
-    <el-aside style="width: auto;">
+    <el-aside class="hidden-md-and-down" style="width: auto;">
       <app-menu />
     </el-aside>
     <el-container>
@@ -40,6 +40,7 @@ export default {
   line-height: 80px;
   z-index: 2000;
   box-shadow: 0 0 20px #00000026;
+  overflow: hidden;
 }
 
 .el-main {

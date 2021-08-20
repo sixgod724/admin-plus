@@ -1,81 +1,67 @@
 <template>
-  <div class="meeting-warp">
-    <div class="meeting-title meeting-region col-group"><span>会议系统主页</span></div>
-    <el-row type="flex" class="metting-totla meeting-region col-group">
-      <el-col :span="4"><span>总数</span></el-col>
-      <el-col :span="4"><span>已使用</span></el-col>
-      <el-col :span="4"><span>近期会议数</span></el-col>
-    </el-row>
-    <div class="meeting-main meeting-region col-group">
-      <div class="meeting-main-select">
-        <div>
-          <label>楼层</label>
-          <el-select v-model="value" placeholder="请选择">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </div>
-        <div>
-          <label>状态</label>
-          <el-select v-model="value" placeholder="请选择">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </div>
-      </div>
-      <el-row type="flex">
-        <el-col v-for="(item, index) in 6">{{ index + 1 }}</el-col>
-      </el-row>
+    <div class="meeting-warp">
+        <el-input v-model="input.input1" placeholder="请输入内容"></el-input>
+        <el-input v-model="input.input2" placeholder="请输入内容"></el-input>
+        <el-dialog
+          :visible.sync="dialogVisible"
+          width="30%">
+          <el-form ref="form" :model="form" label-width="80px">
+              <el-form-item label="内容1">
+                  <el-input v-model="form.input1"></el-input>
+              </el-form-item>
+              <el-form-item label="内容2">
+                  <el-input v-model="form.input2"></el-input>
+              </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="save">确 定</el-button>
+          </span>
+        </el-dialog>
+        <el-button type="primary" @click="show">修改</el-button>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      options: [
-        {
-          value: '选项1',
-          label: '黄金糕'
+    data() {
+        return {
+            dialogVisible: false,
+            input:{
+                input1: '内容11',
+                input2: '内容22',
+            },
+            form: {
+                input1: '',
+                input2: '',
+            }
+        };
+    },
+    methods:{
+        show(){
+            this.dialogVisible = true;
+            this.form = Object.assign({},this.input);
+            console.log(this.form);
         },
-        {
-          value: '选项2',
-          label: '双皮奶'
-        },
-        {
-          value: '选项3',
-          label: '蚵仔煎'
-        },
-        {
-          value: '选项4',
-          label: '龙须面'
-        },
-        {
-          value: '选项5',
-          label: '北京烤鸭'
+        save(){
+            this.dialogVisible = false;
+            this.input = this.form;
         }
-      ],
-      value: ''
-    };
-  }
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 .meeting-title {
-  text-align: center;
+    text-align: center;
 }
 .meeting-region {
-  padding: 15px 20px;
-  background-color: #fff;
-  margin-bottom: 20px;
-  border-radius: 4px;
+    padding: 15px 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 4px;
 }
-.meeting-main-select{
-  display: flex;
-}
-</style>
-<style>
-.col-group {
-  box-shadow: rgb(34 41 47 / 14%) 0px 2px 8px 0px;
+.meeting-main-select {
+    display: flex;
 }
 </style>

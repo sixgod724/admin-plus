@@ -5,6 +5,7 @@ import router from './router'
 import axios from 'axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/display.css';
 import locale from 'element-ui/lib/locale/lang/en'
 import Layout from './layout/default'
 import animated from 'animate.css'

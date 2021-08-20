@@ -64,4 +64,11 @@ export default {
     }
   }
 }
+.el-menu{
+    border-right:none;
+}
+.el-submenu .el-menu-item{
+    height: 42px;
+    line-height: 42px;
+}
 </style>
