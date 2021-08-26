@@ -10,7 +10,7 @@ export function postList(qurer){
 
 export function getProfit(quyer){
   return request({
-    url: '/profit',
+    url: 'test/profit',
     method: 'get',
     params: quyer
   })

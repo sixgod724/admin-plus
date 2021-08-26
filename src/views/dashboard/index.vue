@@ -46,7 +46,13 @@
                             <div class="card-body pb-50">
                                 <h6>Orders</h6>
                                 <h2>2,76k</h2>
-                                <pie style="min-height: 85px;" id="demo" :xaixs="order.xaixs" :series="order.series" :color="['#fdab5d']" />
+                                <bar 
+                                style="min-height: 85px;" 
+                                id="demo" 
+                                :xaixs="order.xaixs" 
+                                :series="order.series" 
+                                :color="['#fdab5d']" 
+                                />
                             </div>
                         </div>
                     </el-col>
@@ -55,7 +61,13 @@
                             <div class="card-body pb-50">
                                 <h6>Profit</h6>
                                 <h2>6,27k</h2>
-                                <pie style="min-height: 85px;" id="demo1" :xaixs="order.xaixs" :series="order.series" :color="['#fdab5d']" />
+                                <lines 
+                                style="min-height: 85px;" 
+                                id="demo1" 
+                                :xaixs="profit_list.xaixs" 
+                                :series="profit_list.series" 
+                                :color="['#00cfe8']" 
+                                />
                             </div>
                         </div>
                     </el-col>
@@ -67,11 +79,13 @@
 </template>
 
 <script>
-import { postList } from '@/api/test.js';
-import pie from '@/components/echarts/type/pie';
+import { postList,getProfit } from '@/api/test.js';
+import bar from '@/components/echarts/type/bar';
+import lines from '@/components/echarts/type/line';
 export default {
     components: {
-        pie
+        bar,
+        lines
     },
     data() {
         return {
@@ -80,24 +94,22 @@ export default {
                 series: []
             },
             profit_list: {
+                xaixs: [],
                 series: []
             },
-            data_list: []
         };
     },
     mounted() {
-        console.log(this);
         this.init();
     },
     methods: {
         init() {
             this.show();
+            this.profit();
         },
-
         show() {
             postList()
                 .then(data => {
-                    this.data_list = data;
                     let xaxis = [];
                     let datas = [];
                     for (let item of data) {
@@ -132,7 +144,25 @@ export default {
                         }
                     ];
                 })
-                .catch(err => console.log(err));
+        },
+        profit(){
+            getProfit()
+            .then(data => {
+                let xaxis = [];
+                let datas = [];
+                for (let item of data) {
+                    xaxis.push(item.type);
+                    datas.push(item.lr);
+                }
+                this.profit_list.xaixs = xaxis;
+                this.profit_list.series = [
+                    {
+                        name: '利润',
+                        type: 'line',
+                        data: datas,
+                    }
+                ];
+            })
         }
     }
 };

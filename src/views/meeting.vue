@@ -19,6 +19,11 @@
           </span>
         </el-dialog>
         <el-button type="primary" @click="show">修改</el-button>
+        <div>
+            展示区域- 
+            {{cut}}
+            <el-button type="primary" @click="i+=1">切换</el-button>
+        </div>
     </div>
 </template>
 
@@ -26,6 +31,7 @@
 export default {
     data() {
         return {
+            msg: '原始值',
             dialogVisible: false,
             input:{
                 input1: '内容11',
@@ -34,20 +40,30 @@ export default {
             form: {
                 input1: '',
                 input2: '',
-            }
+            },
+            arr: [1,2,3,4,5],
+            i: 0
         };
+    },
+    computed:{
+        cut(){
+            let len = this.arr.length;
+            if(this.i == len){
+                this.i = 0;
+            }
+            return this.arr[this.i]
+        }
     },
     methods:{
         show(){
             this.dialogVisible = true;
             this.form = Object.assign({},this.input);
-            console.log(this.form);
         },
         save(){
             this.dialogVisible = false;
             this.input = this.form;
-        }
-    }
+        },
+    },
 };
 </script>
 

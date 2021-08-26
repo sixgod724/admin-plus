@@ -5,7 +5,7 @@ import { Message } from 'element-ui';
 
 // 创建 axios 实例
 const service = axios.create({
-    // baseURL: 'https://mock.mengxuegu.com/mock/60c99e3623b1e401b1725141/',
+    // baseURL: 'https://mock.mengxuegu.com/',
     baseURL: process.env.VUE_APP_URL,
     timeout: 2000,
 })
