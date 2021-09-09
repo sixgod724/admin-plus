@@ -6,9 +6,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         isCollapse: false,
+        title: 'getter',
+        num: 100
     },
     getters: {
-    
+        geTitle: state => state.title,
+        getNum: state => state.num + '%'
     },
     mutations: {
         isCollapseState(state){

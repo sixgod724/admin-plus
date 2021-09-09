@@ -24,6 +24,10 @@
             {{cut}}
             <el-button type="primary" @click="i+=1">切换</el-button>
         </div>
+        <div>
+            vuex-{{$store.getters.geTitle}}
+            vuex-{{$store.getters.getNum}}
+        </div>
     </div>
 </template>
 
@@ -44,6 +48,9 @@ export default {
             arr: [1,2,3,4,5],
             i: 0
         };
+    },
+    mounted() {
+      console.log(this);  
     },
     computed:{
         cut(){
